@@ -1,6 +1,6 @@
 import "../styles/Upload.css";
 
-function Upload() {
+export default function Upload() {
   return (
     <div className="App">
       <header></header>
@@ -43,4 +43,3 @@ function Upload() {
   );
 }
 
-export default Upload;

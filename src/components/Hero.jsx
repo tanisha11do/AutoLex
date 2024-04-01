@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import videobg from "../assets/bgvideo2.mp4";
+import videobg from "../assets/bgvideo.mp4";
 import "../styles/Home.css";
 export default function Hero() {
   return (
@@ -24,7 +24,7 @@ export default function Hero() {
             <h1 className="start-video__heading fw-bold mb-4">
               Your pathway to effortless learning !
             </h1>
-            <p className="lead mb-4">Where Waste Reshapes Our World</p>
+            <p className="lead mb-4">AutoLex: Your Ultimate Study Companion</p>
             <Link to="/upload" className="mt-2 btn btn-lg btn-outline-light">
               Get started
             </Link>
