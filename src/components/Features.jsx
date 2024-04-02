@@ -50,9 +50,9 @@ export default function Features() {
                     You need collaboration. We have got you covered.
                   </h4>
                   <p className="text-muted">
-                    Our transcript feature converts audio lectures into text,
-                    ensuring students have a comprehensive record of lecture
-                    content for reference, review, and accessibility.
+                    Summarization condenses lengthy lecture transcripts into
+                    concise summaries, helping students prioritize study
+                    material and save valuable time.
                   </p>
                   <a
                     href="#"
@@ -94,9 +94,9 @@ export default function Features() {
                     You need collaboration. We have got you covered.
                   </h4>
                   <p className="text-muted">
-                    Our transcript feature converts audio lectures into text,
-                    ensuring students have a comprehensive record of lecture
-                    content for reference, review, and accessibility.
+                    The topics feature extracts key concepts from lectures,
+                    providing students with a clear overview and aiding
+                    navigation through the material.
                   </p>
                   <a
                     href="#"
@@ -120,9 +120,9 @@ export default function Features() {
                     You need collaboration. We have got you covered.
                   </h4>
                   <p className="text-muted">
-                    Our transcript feature converts audio lectures into text,
-                    ensuring students have a comprehensive record of lecture
-                    content for reference, review, and accessibility.
+                    Our study resources suggest relevant articles, videos, and
+                    textbooks based on lecture topics, enriching learning and
+                    encouraging further exploration.
                   </p>
                   <a
                     href="#"
