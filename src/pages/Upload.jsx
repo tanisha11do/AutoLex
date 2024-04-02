@@ -1,15 +1,19 @@
 import "../styles/Upload.css";
+import upload from "../assets/upload.png";
+import topics from "../assets/check-list.png";
+import anim from "../assets/Creativity.mp4";
 
 export default function Upload() {
   return (
     <div className="App">
       <header></header>
+      <div className="ucontainer">
       <button className="upload">
-        <p>Upload audio</p>
+        Upload audio
         <img
           className="upload1"
           alt="Upload"
-          src="https://i.postimg.cc/j5RWF04m/upload.png"
+          src={upload}
         />
       </button>
       <div className="options">
@@ -33,10 +37,17 @@ export default function Upload() {
           <img
             className="logo"
             alt="topics"
-            src="https://i.postimg.cc/qRcc5H6C/check-list.png"
+            src={topics}
           ></img>
           <p>Topics</p>
         </button>
+        
+      </div>
+      <div className="uimage">
+        <video className="ui" src={anim} alt='loading...' ></video>
+      </div>
+          
+        
         {/*<button className='btn3'><img className='logo' alt='resources' src='https://i.postimg.cc/RZ8T3Rzq/education.png'></img><p>Study Materials</p></button>*/}
       </div>
     </div>

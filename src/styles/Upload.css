@@ -1,13 +1,19 @@
 body{
-    background-color: rgb(254, 243, 227);
+    background-color: rgb(1, 1, 1);
     text-align: center;
+  }
+
+  .ucontainer{
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
   }
   
   
   .upload {
-    align-items: center;
+    align-items:center;
     appearance: none;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 30px;
     border-style: none;
     box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
@@ -25,7 +31,7 @@ body{
     line-height: normal;
     max-width: 100%;
     overflow: visible;
-    padding: 30px 80px;
+    padding: 80px 80px;
     position: relative;
     text-align: center;
     text-transform: none;
@@ -36,7 +42,7 @@ body{
     width: auto;
     will-change: transform,opacity;
     z-index: 0;
-    margin: 50px 0 25px 0;
+    margin: auto;
   }
   
   .upload:hover {
@@ -75,40 +81,46 @@ body{
   }
   
   .upload1{
-    width: 20px;
-    height: 20px;
-    padding: 10px 10px 10px 10px;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
   }
   
   
   
   .options{
+    margin: 0 100px;
     padding: 50px;
+    flex-direction: column;
+    display: inline-flex;
+    justify-content: center;
   }
   
   
   .options button {
     background-color: #fff;
     border: 1px solid #d5d9d9;
-    border-radius: 8px;
+    border-radius: 810px;
     box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
     box-sizing: border-box;
     color: #0f1111;
     cursor: pointer;
-    display: inline-flex;
+    flex-direction: row;
+    display: inline-block;
     font-family: "Google Sans",Roboto,Arial,sans-serif;
     font-size: 15px;
     line-height: 29px;
-    padding: 5px;
+    padding: 0 10px;
     position: relative;
-    text-align: center;
+    text-align:center;
+    align-items: center;
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
     width: 170px;
-    margin: 20px;
+    margin: 10px;
   }
   
   .options button:hover {
@@ -122,8 +134,24 @@ body{
   }
   
   .logo{
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 60px;
     padding: 20px 10px 10px 10px;
   }
-  
+
+  .uimage{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .ui{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    margin: 10px;
+  }
