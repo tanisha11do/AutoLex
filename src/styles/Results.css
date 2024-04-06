@@ -1,0 +1,10 @@
+.styled-textbox {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none; /* Prevent resizing manually */
+  overflow: hidden; /* Hide scrollbar initially */
+}
