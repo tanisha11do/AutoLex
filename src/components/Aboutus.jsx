@@ -17,20 +17,12 @@ export default function Content() {
                   around the world. Our project aims to bridge the gap in
                   education by providing innovative solutions that empower
                   students to overcome language barriers and access educational
-                  content with ease. Through our automated lecture transcription
-                  platform, we strive to revolutionize the way students engage
-                  with academic material. By automatically transcribing lectures
-                  and summarizing key points, we enable students to focus more
-                  on understanding concepts rather than struggling with language
-                  comprehension.
+                  content with ease.
                 </div>
                 <div className="text">
                   Our system not only simplifies the learning process but also
                   enhances the learning experience by providing personalized
-                  study resources tailored to students needs. By extracting
-                  keywords and suggesting relevant resources, we empower
-                  students to delve deeper into subjects and reinforce their
-                  understanding through supplementary materials. At AutoLex, we
+                  study resources tailored to students needs.At AutoLex, we
                   believe that every student deserves equal opportunities in
                   education, regardless of language barriers or geographical
                   location. By breaking down these barriers and fostering a

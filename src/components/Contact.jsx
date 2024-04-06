@@ -1,7 +1,7 @@
 export default function Contact() {
   return (
     <section className="contact-section" id="contact">
-      <div className="container my-5 ">
+      <div className="container my-5">
         <div className="row justify-content-center">
           <div className="col-lg-9">
             <h1 className="mb-3">Contact Us</h1>

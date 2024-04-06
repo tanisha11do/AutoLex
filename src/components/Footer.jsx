@@ -6,15 +6,15 @@ export default function Footer() {
           <div className="row gy-5">
             <div className="col-lg-4">
               <p>
-                Your Safety, Our Priority - Join the Movement for Responsible
-                Driving. Designed with ❤️ for Safer Roads.
+                We will make sure AutoLex makes it easier for you to study
+                efficiently.
               </p>
             </div>
             <div className="col-lg-3 ms-auto">
               <h6 className="text-white mb-4">CONTACT US</h6>
-              <p className="mb-1">Phone no: (+91) 785215613</p>
-              <p className="mb-1">Email id: sobersense@ai.com</p>
-              <p className="mb-0">Address: Ghatikia, Bhubaneswar, Odisha</p>
+              <p className="mb-1">Phone no: (+91) 6205738285</p>
+              <p className="mb-1">Email id: autolex@gmail.com</p>
+              <p className="mb-0">Address: Bhubaneswar, Odisha</p>
             </div>
             <div className="col-lg-3">
               <h6 className="text-white mb-4">SUPPORTED BY</h6>
@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="container">
           <div className="row gy-3 justify-content-center">
             <div className="col-auto">
-              <p className="mb-0"> © All rights reserved by Team HackPack</p>
+              <p className="mb-0"> © All rights reserved </p>
             </div>
           </div>
         </div>
