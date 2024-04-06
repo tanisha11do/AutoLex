@@ -1,16 +1,30 @@
+import { useState } from "react";
 import "../styles/Audio.css";
 import upload from "../assets/upload.png";
 import topics from "../assets/check-list.png";
 import anim from "../assets/Creativity.mp4";
 
 export default function Audio() {
+
+  const [ setFileName] = useState("No selected file")
   return (
     <section className="audio-upload" id="audio">
       <div className="ucontainer">
-        <button className="upload">
-          Upload audio
-          <img className="upload1" alt="Upload" src={upload} />
-        </button>
+        
+        <form className="upload" onClick={() => document.querySelector(".input-field").click()}>
+          <input type="file" className="input-field" hidden
+            onChange={({target: {files}}) => {
+              files[0] && setFileName(files[0].name)
+            }}
+          />
+          {<><p>Upload Audio</p>
+            <img className="upload1" alt="Upload" src={upload} /></>
+            }
+          
+        </form>
+        
+
+
         <div className="options">
           <button className="btn1">
             <img
