@@ -2,7 +2,7 @@ import "../styles/Home.css";
 export default function Features() {
   return (
     <div>
-      <section className="feature-section">
+      <section className="feature-section" id="features">
         <div className="py-5 py-lg-10">
           <div className="container py-5 py-lg-8">
             <div className="row g-5 g-lg-10 d-flex align-items-center">

@@ -2,7 +2,7 @@ import "../styles/Home.css";
 export default function Content() {
   return (
     <div>
-      <section className="about-section">
+      <section className="about-section" id="about">
         <div className="container">
           <div className="row">
             <div className="content-column col-lg-6 col-md-12 col-sm-12 order-2">
