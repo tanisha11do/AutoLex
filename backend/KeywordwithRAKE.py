@@ -38,14 +38,14 @@ with open("clusters.txt", "w") as file:
         file.write(", ".join(cluster_keywords) + "\n\n")
 
 
-print("Keywords:")
-for cluster_idx in range(num_clusters):
-    cluster_keywords = []
-    for i, label in enumerate(kmeans.labels_):
-        if label == cluster_idx:
-            cluster_keywords.append(keywords[i])
-    print(f"Cluster {cluster_idx + 1}:")
-    if len(cluster_keywords) > 10:
-        cluster_keywords = cluster_keywords[:10]  
-    print(", ".join(cluster_keywords))
-    print()
+# print("Keywords:")
+# for cluster_idx in range(num_clusters):
+#     cluster_keywords = []
+#     for i, label in enumerate(kmeans.labels_):
+#         if label == cluster_idx:
+#             cluster_keywords.append(keywords[i])
+#     print(f"Cluster {cluster_idx + 1}:")
+#     if len(cluster_keywords) > 10:
+#         cluster_keywords = cluster_keywords[:10]  
+#     print(", ".join(cluster_keywords))
+#     print()

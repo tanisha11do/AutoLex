@@ -28,10 +28,5 @@ def voice_recognition(filename):
 
         text = json.loads(result)["text"]
         transcript += text
-
-    print(transcript)
-
-    with open("trascript.txt", "w") as file:
+    with open("transcript.txt", "w") as file:
      file.write(transcript)
-
-voice_recognition(r"C:\Users\HP\Downloads\GeorgeJackson.mp3")

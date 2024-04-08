@@ -22,7 +22,6 @@ summary = "\n\n".join(d["summary_text"] for d in summaries)
 with open("summary.txt", "w") as file:
     file.write(summary)
 
-print(summary)
 
 
 

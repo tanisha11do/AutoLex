@@ -1,7 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "../styles/Results.css";
 
-export default function Results() {
+export default function Results({
+  transcript,
+  summary,
+  keywords,
+  resources,
+  selectedButton,
+}) {
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    switch (selectedButton) {
+      case "transcript":
+        setContent(transcript);
+        break;
+      case "summary":
+        setContent(summary);
+        break;
+      case "keywords":
+        setContent(keywords);
+        break;
+      case "resources":
+        setContent(resources);
+        break;
+      default:
+        setContent("");
+        break;
+    }
+  }, [transcript, summary, keywords, resources, selectedButton]);
+
   useEffect(() => {
     const textarea = document.getElementById("styled-textbox");
     const handleTextareaInput = () => {
@@ -28,9 +57,19 @@ export default function Results() {
             rows="10"
             cols="20"
             placeholder="Enter your text here..."
+            value={content}
+            readOnly
           ></textarea>
         </div>
       </div>
     </section>
   );
 }
+
+Results.propTypes = {
+  transcript: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  keywords: PropTypes.string.isRequired,
+  resources: PropTypes.string.isRequired,
+  selectedButton: PropTypes.string.isRequired,
+};

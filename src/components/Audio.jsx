@@ -1,11 +1,42 @@
 import { useState } from "react";
+import axios from "axios";
 import "../styles/Audio.css";
 import upload from "../assets/upload.png";
 import topics from "../assets/check-list.png";
 import anim from "../assets/Creativity-pana.png";
+import Results from "./Results";
 
 export default function Audio() {
   const [fileName, setFileName] = useState("No selected file");
+  const [transcript, setTranscript] = useState("");
+  const [summary, setSummary] = useState("");
+  const [keywords, setKeywords] = useState("");
+  const [resources, setResources] = useState("");
+  const [selectedButton, setSelectedButton] = useState("");
+
+  const handleUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("audio", document.querySelector(".input-field").files[0]);
+      const response = await axios.post(
+        "http://localhost:5000/upload-audio",
+        formData
+      );
+      const { transcript, summary, keywords, resources } = response.data;
+      setTranscript(transcript);
+      setSummary(summary);
+      setKeywords(keywords);
+      setResources(resources);
+    } catch (error) {
+      console.error("Error uploading audio:", error);
+      alert("Error uploading audio");
+    }
+  };
+
+  const handleClick = (button) => {
+    setSelectedButton(button);
+  };
+
   return (
     <section className="audio-upload" id="audio">
       <div className="ucontainer">
@@ -17,6 +48,7 @@ export default function Audio() {
             >
               <input
                 type="file"
+                name="audio"
                 className="input-field"
                 hidden
                 accept=".mp3,.mp4"
@@ -37,13 +69,17 @@ export default function Audio() {
           </div>
 
           <div className="container text-center">
-            <button type="button" className="btn btn-primary btn-lg">
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              onClick={handleUpload}
+            >
               Submit
             </button>
           </div>
 
           <div className="options">
-            <button className="btn1">
+            <button className="btn1" onClick={() => handleClick("transcript")}>
               <img
                 className="logo"
                 alt="transcript"
@@ -51,7 +87,7 @@ export default function Audio() {
               ></img>
               <p>Transcript</p>
             </button>
-            <button className="btn2">
+            <button className="btn2" onClick={() => handleClick("summary")}>
               <img
                 className="logo"
                 alt="summary"
@@ -59,9 +95,17 @@ export default function Audio() {
               ></img>
               <p>Summary</p>
             </button>
-            <button className="btn3">
+            <button className="btn3" onClick={() => handleClick("keywords")}>
               <img className="logo" alt="topics" src={topics}></img>
               <p>Topics</p>
+            </button>
+            <button className="btn4" onClick={() => handleClick("resources")}>
+              <img
+                className="logo"
+                alt="resources"
+                src="https://i.postimg.cc/cCmmrGsN/text.png"
+              ></img>
+              <p>Resources</p>
             </button>
           </div>
         </div>
@@ -69,9 +113,14 @@ export default function Audio() {
         <div className="uimage">
           <img className="ui" src={anim} alt="loading..." />
         </div>
-
-        {/*<button className='btn3'><img className='logo' alt='resources' src='https://i.postimg.cc/RZ8T3Rzq/education.png'></img><p>Study Materials</p></button>*/}
       </div>
+      <Results
+        transcript={transcript}
+        summary={summary}
+        keywords={keywords}
+        resources={resources}
+        selectedButton={selectedButton}
+      />
     </section>
   );
 }
