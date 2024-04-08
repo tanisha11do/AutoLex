@@ -2,34 +2,28 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/Results.css";
 
-export default function Results({
-  transcript,
-  summary,
-  keywords,
-  resources,
-  selectedButton,
-}) {
+export default function Results({ result, selectedButton }) {
   const [content, setContent] = useState("");
 
   useEffect(() => {
     switch (selectedButton) {
       case "transcript":
-        setContent(transcript);
+        setContent(result.transcript || "");
         break;
       case "summary":
-        setContent(summary);
+        setContent(result.summary || "");
         break;
       case "keywords":
-        setContent(keywords);
+        setContent(result.keywords || "");
         break;
       case "resources":
-        setContent(resources);
+        setContent(result.resources || "");
         break;
       default:
         setContent("");
         break;
     }
-  }, [transcript, summary, keywords, resources, selectedButton]);
+  }, [result, selectedButton]);
 
   useEffect(() => {
     const textarea = document.getElementById("styled-textbox");
@@ -43,7 +37,7 @@ export default function Results({
     return () => {
       textarea.removeEventListener("input", handleTextareaInput);
     };
-  }, []); // Empty dependency array ensures this effect runs only once after initial render
+  }, []);
 
   return (
     <section className="results" id="results">
@@ -67,9 +61,6 @@ export default function Results({
 }
 
 Results.propTypes = {
-  transcript: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
-  keywords: PropTypes.string.isRequired,
-  resources: PropTypes.string.isRequired,
+  result: PropTypes.object.isRequired, // Adjust PropTypes according to the structure of your result object
   selectedButton: PropTypes.string.isRequired,
 };

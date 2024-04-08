@@ -8,26 +8,19 @@ import Results from "./Results";
 
 export default function Audio() {
   const [fileName, setFileName] = useState("No selected file");
-  const [transcript, setTranscript] = useState("");
-  const [summary, setSummary] = useState("");
-  const [keywords, setKeywords] = useState("");
-  const [resources, setResources] = useState("");
+  const [result, setResult] = useState({});
   const [selectedButton, setSelectedButton] = useState("");
 
   const handleUpload = async () => {
     try {
       const formData = new FormData();
       formData.append("audio", document.querySelector(".input-field").files[0]);
+      formData.append("selectedButton", selectedButton); // Include selected button in form data
       const response = await axios.post(
         "http://localhost:5000/upload-audio",
         formData
       );
-      console.log(response);
-      const { transcript, summary, keywords, resources } = response.data;
-      setTranscript(transcript);
-      setSummary(summary);
-      setKeywords(keywords);
-      setResources(resources);
+      setResult(response.data.result);
     } catch (error) {
       console.error("Error uploading audio:", error);
       alert("Error uploading audio");
@@ -115,13 +108,7 @@ export default function Audio() {
           <img className="ui" src={anim} alt="loading..." />
         </div>
       </div>
-      <Results
-        transcript={transcript}
-        summary={summary}
-        keywords={keywords}
-        resources={resources}
-        selectedButton={selectedButton}
-      />
+      <Results result={result} selectedButton={selectedButton} />
     </section>
   );
 }

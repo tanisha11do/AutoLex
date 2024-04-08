@@ -79,21 +79,22 @@ def upload_audio():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-def process_audio(audio_path):
+def process_audio(audio_path, selected_button):
+    result = {}
+
     transcript = speech_to_text(audio_path)
-
     summary = generate_summary(transcript)
-
     keywords = generate_keywords(transcript)
-
     resources = custom_search(keywords)
+    
+    result['transcript'] = transcript
+    result['summary'] = summary
+    result['keywords'] = keywords
+    result['resources'] = resources
 
-    return {
-        'transcript': transcript,
-        'summary': summary,
-        'keywords': keywords,
-        'resources': resources
-    }
+    return result
+
+
 
 def speech_to_text(audio_path):
     FRAME_RATE = 16000
@@ -123,7 +124,7 @@ def speech_to_text(audio_path):
         return transcript 
 
 
-def generate_summary(text):
+def generate_summary(transcript):
     summarizer = pipeline("summarization")
 
     with open("transcript.txt", "r") as file:
@@ -142,7 +143,7 @@ def generate_summary(text):
         file.write(summary)
     return summary
 
-def generate_keywords(text):
+def generate_keywords(transcript):
     r = Rake()
 
     with open("transcript.txt", "r") as file:
