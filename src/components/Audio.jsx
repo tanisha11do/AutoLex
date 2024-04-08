@@ -22,6 +22,7 @@ export default function Audio() {
         "http://localhost:5000/upload-audio",
         formData
       );
+      console.log(response);
       const { transcript, summary, keywords, resources } = response.data;
       setTranscript(transcript);
       setSummary(summary);
