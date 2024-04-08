@@ -1,10 +1,9 @@
 body{
-    background-color: rgb(1, 1, 1);
     text-align: center;
   }
 
   .ucontainer{
-    margin: 50px;
+    margin: auto;
     display: flex;
     flex-direction: row;
   }
@@ -85,14 +84,33 @@ body{
     height: 50px;
     padding: 10px;
   }
+
+  .upload p{
+    margin-top: 20px;
+  }
   
+  #filename p{
+    text-align: center;
+    font-style: italic;
+    margin-top: 2%;
+    color: #2f33a996;
+  }
+
+  .btns{
+    display: flex;
+    flex-direction: column;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+  }
   
   
   .options{
     margin: 0 100px;
     padding: 50px;
-    flex-direction: column;
-    display: inline-flex;
+    flex-direction: row;
+    display: flex;
     justify-content: center;
   }
   
@@ -140,18 +158,34 @@ body{
   }
 
   .uimage{
-    width: 400px;
-    height: 400px;
     padding: 10px;
     margin: 10px;
     align-items: center;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
+    flex:1;
+  }
+
+  @media (max-width: 600px) {
+    .ucontainer {
+      flex-direction: column; 
+    }
   }
 
   .ui{
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     padding: 10px;
     margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    text-align: center;
   }
+
+  .btnupload {
+    display: flex;
+    flex-direction: column;
+  }
+
+
