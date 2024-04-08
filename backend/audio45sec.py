@@ -12,8 +12,6 @@ rec.SetWords(True)
 
 # AudioSegment.converter=r"C:\Users\HP\Desktop\ffmpeg\bin\ffmpeg.exe"
 
-# # Transcribing a 45sec audio
-
 mp3 = AudioSegment.from_mp3(r"C:\Users\HP\Desktop\backend-AutoLex\speech_recognition_marketplace.mp3")
 mp3 = mp3.set_channels(CHANNELS)
 mp3 = mp3.set_frame_rate(FRAME_RATE)

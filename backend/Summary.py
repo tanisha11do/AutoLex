@@ -13,21 +13,9 @@ for i in range(0, len(split_tokens), 850):
     selection = " ".join(split_tokens[i:(i+850)])
     docs.append(selection)
 
-
-# In[12]:
-
-
 summaries = summarizer(docs)
 
-
-# In[13]:
-
-
 summaries
-
-
-# In[14]:
-
 
 summary = "\n\n".join(d["summary_text"] for d in summaries)
 
@@ -37,7 +25,6 @@ with open("summary.txt", "w") as file:
 print(summary)
 
 
-# In[ ]:
 
 
 

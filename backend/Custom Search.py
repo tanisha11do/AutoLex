@@ -8,7 +8,6 @@ from apiclient.discovery import build
 
 resource = build("customsearch", 'v1', developerKey=api_key).cse()
 
-# Join the first 10 keywords with spaces to form the search query
 search_query = ' '.join(keywords)
 
 result = resource.list(q=search_query, cx='009557628044748784875:5lejfe73wrw').execute()

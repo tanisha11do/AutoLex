@@ -5,8 +5,6 @@ from pydub import AudioSegment
 FRAME_RATE = 16000
 CHANNELS=1
 
-
-# # Transcribing Long Audio 
 def voice_recognition(filename):
     model = Model(model_name="vosk-model-en-us-0.22")
 
