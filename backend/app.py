@@ -35,7 +35,8 @@ def index():
             display = upload_audio()
             ouput = display
 
-            return jsonify({'output': output})  
+            return jsonify({'output': output})
+            print(output)
 
 def upload_audio():
     try:
