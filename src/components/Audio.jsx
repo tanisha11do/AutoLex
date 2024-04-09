@@ -18,7 +18,7 @@ export default function Audio() {
     event.preventDefault(); // Prevent page reload
     const formData = new FormData(event.target);
     try {
-      const response = await fetch("/upload-audio", {
+      const response = await fetch("http://localhost:5000/upload-audio", {
         method: "POST",
         body: formData,
       });
@@ -54,9 +54,6 @@ export default function Audio() {
                   <img className="upload1" alt="Upload" src={upload} />
                 </>
               }
-              <div id="filename">
-                <p>{fileName ? fileName : "Choose File"}</p>
-              </div>
               <div className="container text-center">
                 <input
                   type="submit"
@@ -66,6 +63,9 @@ export default function Audio() {
                 />
               </div>
             </form>
+          </div>
+          <div id="filename">
+            <p>{fileName ? fileName : "Choose File"}</p>
           </div>
 
           <div className="options">

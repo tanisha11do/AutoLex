@@ -17,26 +17,7 @@ from apiclient.discovery import build
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/upload-audio', methods=["GET", "POST"])
-
-def index():
-    output = ""
-    if request.method == "POST":
-        print("FORM DATA RECEIVED")
-
-        if "file" not in request.files:
-            return redirect(request.url)
-
-        file = request.files["file"]
-        if file.filename == "":
-            return redirect(request.url)
-
-        if file:
-            display = upload_audio()
-            ouput = display
-
-            return jsonify({'output': output})
-            print(output)
+@app.route('/upload-audio', methods=["POST"])
 
 def upload_audio():
     try:
