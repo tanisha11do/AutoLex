@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, redirect, render_template
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import re
@@ -17,21 +17,24 @@ from apiclient.discovery import build
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/upload-audio', methods=["POST"])
+@app.route('/get-transcript', methods=["POST","GET"])
 
 def upload_audio():
-    try:
+    if request.method == 'POST':
+        try:
         # Get the uploaded audio file
-        audio_file = request.files['audio']
-        audio_path = 'uploaded_audio.mp3' 
-        audio_file.save(audio_path)
+            audio_file = request.files['file']
+            audio_path = 'uploaded_audio.mp3' 
+            audio_file.save(audio_path)
 
         # Call audio processing function
-        result = process_audio(audio_path)
+            result = process_audio(audio_path)
 
-        return jsonify({'result': result})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+            return jsonify({'transcript': 'Your transcript data'})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    else:
+        return jsonify({'error': 'Method not allowed'}), 405
 
 def process_audio(audio_path):
     result = {}

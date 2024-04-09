@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import axios from "axios";
 import "../styles/Audio.css";
 import upload from "../assets/upload.png";
 import topics from "../assets/check-list.png";
@@ -10,24 +10,43 @@ export default function Audio() {
   const [transcript, setTranscript] = useState(""); // State to store transcript
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setFileName(file.name);
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      setFileName(file.name);
+    } else {
+      setFileName("No selected file");
+    }
   };
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault(); // Prevent page reload
-    const formData = new FormData(event.target);
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData();
+    formData.append("file", event.target.file.files[0]); // Get the file from the form
+
     try {
-      const response = await fetch("http://localhost:5000/upload-audio", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
+      const response = await axios.post(
+        "http://localhost:5000/get-transcript",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const data = response.data;
       setTranscript(data.transcript); // Update transcript state
+
+      // Show success message
+      alert("Audio uploaded successfully");
     } catch (error) {
       console.error("Error uploading file:", error);
+      // Show error message
+      alert("Error uploading file. Please try again.");
     }
   };
+
   return (
     <section className="audio-upload" id="audio">
       <div className="ucontainer">
