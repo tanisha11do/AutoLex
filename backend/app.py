@@ -64,7 +64,7 @@ def speech_to_text(audio_path):
 
     step = 45000
     transcript = ""
-    for i in range(0,len(mp3),step):
+    for i in range(0, len(mp3), step):
         print(f"Progress: {i/len(mp3)}")
         segment = mp3[i:(i+step)]
 
@@ -73,18 +73,22 @@ def speech_to_text(audio_path):
 
         text = json.loads(result)["text"]
         transcript += text
-        return transcript 
+    
+    # Ensure that the entire transcript is captured before returning
+    return transcript
+
 
 
 def generate_summary(transcript):
-    summarizer = pipeline("summarization")
-
+    summarizer = pipeline("summarization",  model="sshleifer/distilbart-cnn-12-6", revision="a4f8f3e")
+    # summarizer = pipeline("summarization")
     split_tokens = transcript.split(" ")
     docs = []
 
     for i in range(0, len(split_tokens), 850):
         selection = " ".join(split_tokens[i:(i+850)])
-    docs.append(selection)
+        docs.append(selection)
+
     summaries = summarizer(docs,max_length=56, min_length=32, do_sample=False)
     summary = "\n\n".join(d["summary_text"] for d in summaries)
     return summary
@@ -99,18 +103,19 @@ def generate_keywords(transcript):
     X = vectorizer.fit_transform(keyword_texts)
 
     num_clusters = 5  
-    kmeans = KMeans(n_clusters=num_clusters)
+    kmeans = KMeans(n_clusters=num_clusters, n_init=10)
+
     kmeans.fit(X)
     for cluster_idx in range(num_clusters):
         cluster_keywords = []
-    for i, label in enumerate(kmeans.labels_):
-        if label == cluster_idx:
-            cluster_keywords.append(keywords[i])
-    print(f"Cluster {cluster_idx + 1}:")
-    if len(cluster_keywords) > 10:
-        cluster_keywords = cluster_keywords[:10]  
-    print(", ".join(cluster_keywords))
-    print()
+        for i, label in enumerate(kmeans.labels_):
+            if label == cluster_idx:
+                cluster_keywords.append(keywords[i])
+        print(f"Cluster {cluster_idx + 1}:")
+        if len(cluster_keywords) > 10:
+            cluster_keywords = cluster_keywords[:10]  
+        print(", ".join(cluster_keywords))
+        print()
     return cluster_keywords
 
 def custom_search(keywords):
@@ -123,15 +128,16 @@ def custom_search(keywords):
     result = resource.list(q=search_query, cx='009557628044748784875:5lejfe73wrw').execute()
 
     print("Search Results:")
-    with open("results.txt", "w") as result_file:
-        for item in result.get('items', []):
-            title = item.get('title', 'N/A')
-            link = item.get('link', 'N/A')
-            result_file.write(f"Title: {title}\nLink: {link}\n\n")
-            print("Title:", title)
-            print("Link:", link)
-            print()
-            return result_file
+    result_output = []
+    for item in result.get('items', []):
+        title = item.get('title', 'N/A')
+        link = item.get('link', 'N/A')
+        result_output.append({"Title": title, "Link": link})
+        print("Title:", title)
+        print("Link:", link)
+        print()
+    
+    return result_output
     
 
 if __name__ == '__main__':
