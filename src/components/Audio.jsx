@@ -7,7 +7,7 @@ import anim from "../assets/Creativity-pana.png";
 
 export default function Audio() {
   const [fileName, setFileName] = useState("No selected file");
-  const [transcript, setTranscript] = useState(""); // State to store transcript
+  const [result, setResult] = useState(null);
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -36,7 +36,7 @@ export default function Audio() {
       );
 
       const data = response.data;
-      setTranscript(data.transcript); // Update transcript state
+      setResult(data);
 
       // Show success message
       alert("Audio uploaded successfully");
@@ -123,10 +123,46 @@ export default function Audio() {
           <img className="ui" src={anim} alt="loading..." />
         </div>
       </div>
-      {transcript !== "" && (
-        <div id="speechTranscriptContainer">
-          <h1>Transcript</h1>
-          <p id="speechText">{transcript}</p>
+      {result && (
+        <div id="resultContainer" className="result-container">
+          <h1>Result</h1>
+          <div>
+            <h2>Transcript</h2>
+            <p>{result.transcript}</p>
+          </div>
+          <div>
+            <h2>Summary</h2>
+            <p>{result.summary}</p>
+          </div>
+          <div>
+            <h2>Keywords</h2>
+            <p>{result.keywords.join(", ")}</p>
+          </div>
+          <div>
+            <h2>Clusters</h2>
+            <ul>
+              {result.clusters.map((cluster, index) => (
+                <li key={index}>{cluster}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2>Search Results</h2>
+            <ul>
+              {result.resources.map((resource, index) => (
+                <li key={index}>
+                  <a
+                    href={resource.Link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {resource.Title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </section>

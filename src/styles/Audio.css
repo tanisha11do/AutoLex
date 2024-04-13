@@ -188,4 +188,11 @@ body{
     flex-direction: column;
   }
 
-
+  .result-container {
+    padding: 20px; /* Adds space inside the container */
+    margin: 20px auto; /* Centers the container and adds space above and below */
+    max-width: 1200px; /* Sets maximum width for responsiveness */
+    width: 100%; /* Makes it responsive */
+    box-sizing: border-box; /* Includes padding in width */
+  }
+  
