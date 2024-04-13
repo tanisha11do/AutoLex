@@ -8,6 +8,7 @@ import anim from "../assets/Creativity-pana.png";
 export default function Audio() {
   const [fileName, setFileName] = useState("No selected file");
   const [result, setResult] = useState(null);
+  const [activeSection, setActiveSection] = useState(null);
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -88,7 +89,10 @@ export default function Audio() {
           </div>
 
           <div className="options">
-            <button className="btn1">
+            <button
+              className="btn1"
+              onClick={() => setActiveSection("transcript")}
+            >
               <img
                 className="logo"
                 alt="transcript"
@@ -96,7 +100,10 @@ export default function Audio() {
               ></img>
               <p>Transcript</p>
             </button>
-            <button className="btn2">
+            <button
+              className="btn2"
+              onClick={() => setActiveSection("summary")}
+            >
               <img
                 className="logo"
                 alt="summary"
@@ -104,11 +111,14 @@ export default function Audio() {
               ></img>
               <p>Summary</p>
             </button>
-            <button className="btn3">
+            <button className="btn3" onClick={() => setActiveSection("topics")}>
               <img className="logo" alt="topics" src={topics}></img>
               <p>Topics</p>
             </button>
-            <button className="btn4">
+            <button
+              className="btn4"
+              onClick={() => setActiveSection("resources")}
+            >
               <img
                 className="logo"
                 alt="resources"
@@ -126,43 +136,48 @@ export default function Audio() {
       {result && (
         <div id="resultContainer" className="result-container">
           <h1>Result</h1>
-          <div>
-            <h2>Transcript</h2>
-            <p>{result.transcript}</p>
-          </div>
-          <div>
-            <h2>Summary</h2>
-            <p>{result.summary}</p>
-          </div>
-          <div>
-            <h2>Keywords</h2>
-            <p>{result.keywords.join(", ")}</p>
-          </div>
-          <div>
-            <h2>Clusters</h2>
-            <ul>
-              {result.clusters.map((cluster, index) => (
-                <li key={index}>{cluster}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2>Search Results</h2>
-            <ul>
-              {result.resources.map((resource, index) => (
-                <li key={index}>
-                  <a
-                    href={resource.Link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {resource.Title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {activeSection === "transcript" && (
+            <div>
+              <h2>Transcript</h2>
+              <p>{result.transcript}</p>
+            </div>
+          )}
+          {activeSection === "summary" && (
+            <div>
+              <h2>Summary</h2>
+              <p>{result.summary}</p>
+            </div>
+          )}
+          {activeSection === "topics" && (
+            <div>
+              <h2>Keywords</h2>
+              <p>{result.keywords.join(", ")}</p>
+              <h2>Clusters</h2>
+              <ul>
+                {result.clusters.map((cluster, index) => (
+                  <li key={index}>{cluster}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {activeSection === "resources" && (
+            <div>
+              <h2>Search Results</h2>
+              <ul>
+                {result.resources.map((resource, index) => (
+                  <li key={index}>
+                    <a
+                      href={resource.Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {resource.Title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </section>
